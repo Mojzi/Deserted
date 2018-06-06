@@ -14,4 +14,9 @@ public class Weapon : Item {
 
 	public string attackAnimation;
 
+	public override void Use(GameObject user) {
+		base.Use(user);
+
+		user.GetComponent<MovementController>().attack = this;
+	}
 }

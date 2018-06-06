@@ -16,6 +16,7 @@ public class ZombieAIController : MonoBehaviour {
 	public int sightRadius = 48;
 	public int attackReach = 32;
 	Transform pTransform;
+	Vector2 distanceVector;
 
 	// Use this for initialization
 	void Start () {
@@ -63,6 +64,9 @@ public class ZombieAIController : MonoBehaviour {
 	}
 	IEnumerator ChasePlayer() {
 		while(true) {
+			if(pTransform == null) {
+				break;
+			}
 			Vector2 playerPos = new Vector2(pTransform.position.x, pTransform.position.y);
 
 			movement.directionVector.Set(playerPos.x - this.GetComponent<Transform>().position.x,
@@ -73,27 +77,39 @@ public class ZombieAIController : MonoBehaviour {
 			Vector2 distanceVector = new Vector2(Mathf.Abs(playerPos.x - this.GetComponent<Transform>().position.x),
 											 Mathf.Abs(playerPos.y - this.GetComponent<Transform>().position.y));
 
-			if(distanceVector.magnitude < attackReach) {
-				GetComponent<AttackScript>().beginAttack(this.gameObject, movement.directionVector);
-				movement.isAttacking = true;
-			}
 			yield return new WaitForSeconds(Random.Range(1, 2));
 		}
 	}
+
+	IEnumerator AttackPlayer() {
+		while(true) {
+			if(distanceVector.magnitude < attackReach && !movement.isAttacking) {
+				GetComponent<AttackScript>().beginAttack(this.gameObject, movement.directionVector);
+				movement.isAttacking = true;
+			}
+			yield return new WaitForSeconds(Random.Range(1, 3));
+		}
+	}
+
 	void FixedUpdate () {
+		if(pTransform ==null) {
+			return;
+		}
 		Vector2 playerPos = new Vector2(pTransform.position.x, pTransform.position.y);
-		Vector2 distanceVector = new Vector2(Mathf.Abs(playerPos.x - this.GetComponent<Transform>().position.x),
+		distanceVector = new Vector2(Mathf.Abs(playerPos.x - this.GetComponent<Transform>().position.x),
 											 Mathf.Abs(playerPos.y - this.GetComponent<Transform>().position.y));
 
 		if(distanceVector.magnitude < sightRadius && !inChaseMode) {
 			Debug.Log("Goni!");
 			StopAllCoroutines();
 			StartCoroutine(ChasePlayer());
+			StartCoroutine(AttackPlayer());
 			movement.movementSpeed = movement.movementSpeed * 1.5f;
 			inChaseMode = true;
 		} else if (distanceVector.magnitude > sightRadius && inChaseMode) {
 			StopAllCoroutines();
 			StartCoroutine(ThinkAboutNewdirection());
+			StartCoroutine(AttackPlayer());
 			inChaseMode = false;
 			movement.movementSpeed = movement.movementSpeed / 1.5f;
 			Debug.Log("Przestal!");

@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour {
 
-	public Weapon attack;
+	public Item item;
 
 
 	void onCreate() {
-		GetComponent<ReSkinAnimation>().name = attack.name;
+		GetComponent<ReSkinAnimation>().name = item.name;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag.Equals("Player")) {
 			Debug.Log("Podniesiono ");
-			other.gameObject.GetComponent<MovementController>().attack = attack;
-			Destroy(this.gameObject);
+			if(Inventory.instance.Add(item)) {
+				// other.gameObject.GetComponent<MovementController>().attack = attack;
+				Destroy(this.gameObject);
+			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovementController : MonoBehaviour {
 	public Vector2 directionVector;
@@ -24,6 +25,9 @@ public class MovementController : MonoBehaviour {
 
 	public int weight = 1;
 
+    public GameObject healthBase;
+    public GameObject healthBar;
+
 	void Start () {
 		isAttacking = false;
 		rigidbody = GetComponent<Rigidbody2D> ();
@@ -41,6 +45,19 @@ public class MovementController : MonoBehaviour {
 			movementVector = new Vector2(transform.position.x, transform.position.y) - hitPosition;
 			movementVector = movementVector.normalized;
 			movementSpeed = (movementSpeed * 10)/weight;
+			if(tag.Equals("Player")) {
+				healthBar.transform.localScale = new Vector3(currentHealth/(healthTotal *1f), 1, 1);
+			}
+		}
+	}
+
+	public void ChangeHealth(int healthChange) {
+		currentHealth += healthChange;
+		if(currentHealth > healthTotal) {
+			currentHealth = healthTotal;
+		}
+		if(tag.Equals("Player")) {
+			healthBar.transform.localScale = new Vector3(currentHealth/(healthTotal *1f), 1, 1);
 		}
 	}
 
@@ -53,8 +70,15 @@ public class MovementController : MonoBehaviour {
 		GetComponent<SpriteRenderer>().color = Color.white;
 		immune = false;
 		if(currentHealth <= 0) {
+			if(tag.Equals("Player")) {
+        		SceneManager.LoadScene("Menu");
+			}
 			Destroy(this.gameObject);
 		}
+	}
+
+	void GameEnd() {
+        SceneManager.LoadScene("Menu");
 	}
 	void FixedUpdate () {
 		

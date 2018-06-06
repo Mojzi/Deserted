@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -23,6 +24,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(EventSystem.current.IsPointerOverGameObject()) {
+			movement.movementVector.Set(0,0);
+			return;
+		}
 		movement.movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		movement.directionVector = new Vector2(Input.mousePosition.x - Screen.width/2, Input.mousePosition.y - Screen.height/2);
 		movement.directionVector.Normalize();
@@ -37,9 +42,6 @@ public class PlayerMovement : MonoBehaviour {
 			// attackObject.GetComponent<ReSkinAnimation>().spriteSheetName = attack.name;
 			GetComponent<AttackScript>().beginAttack(this.gameObject, GetComponent<MovementController>().directionVector);
 			movement.isAttacking = true;
-		}
-		if(Input.GetKeyDown("escape")) {
-			Application.Quit();
 		}
 		// animator.SetBool("is_attacking", isAttacking);
 		// armour.GetComponent<Animator>().SetBool("is_attacking", isAttacking);
