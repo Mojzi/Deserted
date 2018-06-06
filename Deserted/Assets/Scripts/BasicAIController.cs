@@ -55,24 +55,27 @@ public class BasicAIController : MonoBehaviour {
 		if(other.gameObject.tag.Equals("Player")) {
 			float x = other.GetComponent<Transform>().position.x;
 			float y = other.GetComponent<Transform>().position.y;
-			Vector2 direction = new Vector2(x - movement.movementVector.x, y -  movement.movementVector.y);
-			if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) {
-				if(direction.x > 0) {
-					direction.x = 1.0f;
-					direction.y = 0.0f;
-				} else {
-					direction.x = -1.0f;
-					direction.y = 0.0f;
-				}
-			} else {
-				if(direction.y > 0) {
-					direction.x = 0.0f;
-					direction.y = 1.0f;
-				} else {
-					direction.x = 0.0f;
-					direction.y = -1.0f;
-				}
-			}
+			Vector2 direction = new Vector2(x - transform.position.x, y -  transform.position.y);
+			direction.Normalize();
+			// if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) {
+			// 	if(direction.x > 0) {
+			// 		direction.x = 1.0f;
+			// 		direction.y = 0.0f;
+			// 	} else {
+			// 		direction.x = -1.0f;
+			// 		direction.y = 0.0f;
+			// 	}
+			// } else {
+			// 	if(direction.y > 0) {
+			// 		direction.x = 0.0f;
+			// 		direction.y = 1.0f;
+			// 	} else {
+			// 		direction.x = 0.0f;
+			// 		direction.y = -1.0f;
+			// 	}
+			// }
+			movement.directionVector.Set(direction.x, direction.y);
+			movement.movementVector.Set(direction.x, direction.y);
 			GetComponent<AttackScript>().beginAttack(this.gameObject, direction);
 			movement.isAttacking = true;
 		}

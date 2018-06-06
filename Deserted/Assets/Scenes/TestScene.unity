@@ -1634,6 +1634,84 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f84771312cb4f6f4a8493c0b18179cd5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &640123833
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10137.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -414.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347175174048884, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 212418085785455792, guid: 86daf862f02bd0e488bb4441c2651f9c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 4142
+      objectReference: {fileID: 0}
+    - target: {fileID: 114043908401969442, guid: 86daf862f02bd0e488bb4441c2651f9c,
+        type: 2}
+      propertyPath: spriteSheetName
+      value: SpriteSheetZombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 114401122968161714, guid: 86daf862f02bd0e488bb4441c2651f9c,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 312278034}
+    - target: {fileID: 1061113345976608, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+      propertyPath: m_Name
+      value: Zombie (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114663533167966398, guid: 86daf862f02bd0e488bb4441c2651f9c,
+        type: 2}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 11400000, guid: d93bb5906462e4042aaf803718a94ced,
+        type: 2}
+    - target: {fileID: 114401122968161714, guid: 86daf862f02bd0e488bb4441c2651f9c,
+        type: 2}
+      propertyPath: attackReach
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163567431154990, guid: 86daf862f02bd0e488bb4441c2651f9c,
+        type: 2}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 1233892029435080, guid: 0014a33a03a31c94a913bf3f59fdbfc2,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 86daf862f02bd0e488bb4441c2651f9c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &654968899
 Prefab:
   m_ObjectHideFlags: 0
