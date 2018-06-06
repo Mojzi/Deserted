@@ -9,14 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb7b9dff17982ff4a9acbda0a51d7475, type: 3}
-  m_Name: RustySword
+  m_Name: Bow
   m_EditorClassIdentifier: 
   name: 
   value: 0
-  icon: {fileID: 21300000, guid: ac82d4cb05901be42b72e61e586c6bd5, type: 3}
+  icon: {fileID: 21300000, guid: 1e00f4df9323fe142b8bbd56e90f0948, type: 3}
   description: 
-  damage: 20
-  reach: 16
-  area: 10
-  type: 0
-  attackAnimation: attack_rusty_sword
+  damage: 15
+  reach: 0
+  area: 0
+  type: 1
+  attackAnimation: attack_bow

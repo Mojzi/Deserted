@@ -11,6 +11,9 @@ public class DamageScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if(attacker.GetComponent<MovementController>().attack.type == Weapon.WeaponType.RANGED) {
+            return;
+        }
         if (attacker.gameObject.tag.Equals("Player"))
         {
             Debug.Log("Gracz trafil cos");

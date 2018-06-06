@@ -7,15 +7,20 @@ public class AttackScript : MonoBehaviour {
 	public GameObject attackObject;
 	GameObject attackAnimation;
 	GameObject attacker;
+
+	public GameObject projectile;
 	float horizontalOffset = 0;
 	float verticalOffset = 0;
+	Vector2 attackDirection = new Vector2(0,0);
+	Vector3 attackPosition;
+	Vector2 directionVector;
 
 	public void beginAttack(GameObject attacker, Vector2 directionVector) {
 		this.attacker = attacker;
+		this.directionVector = directionVector;
 		attackAnimation= Instantiate(attackObject);
 			attackAnimation.GetComponent<DamageScript>().attacker = this.attacker;
 			attackAnimation.GetComponent<ReSkinAnimation>().spriteSheetName = attacker.GetComponent<MovementController>().attack.attackAnimation;
-		Vector2 attackDirection = new Vector2(0,0);
 		if(Mathf.Abs(directionVector.x) > Mathf.Abs(directionVector.y)) {
 			if(directionVector.x > 0) {
 				//Prawo
@@ -47,11 +52,21 @@ public class AttackScript : MonoBehaviour {
 				attackAnimation.GetComponent<IsometricSpriteRenderer>().offset += 500;
 			}
 		}
-		attackAnimation.transform.position = new Vector3(attacker.GetComponent<Rigidbody2D>().position.x + attackDirection.x+horizontalOffset,
+		 attackPosition = new Vector3(attacker.GetComponent<Rigidbody2D>().position.x + attackDirection.x+horizontalOffset,
 														attacker.GetComponent<Rigidbody2D>().position.y + attackDirection.y+8+verticalOffset);
+		attackAnimation.transform.position = attackPosition;
 		attackAnimation.GetComponent<Renderer>().sortingOrder = (int)(attackAnimation.transform.position.y * -10);
 
 		Invoke("RemoveAttackAnimation", .5f);
+		if(attacker.GetComponent<MovementController>().attack.type == Weapon.WeaponType.RANGED) {
+			Invoke("Shoot", 0.3f);
+		}
+	}
+
+	void Shoot() {
+
+		GameObject arrow = Instantiate(projectile);
+		arrow.GetComponent<ProjectileDamageScript>().SetDirection(attacker, directionVector);
 	}
 
 	void RemoveAttackAnimation() {

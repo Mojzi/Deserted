@@ -97,7 +97,7 @@ public class MovementController : MonoBehaviour {
 			}
 		}
 
-		if(!(!knocked && immune) && !isAttacking) {
+		if( (!(!knocked && immune) || gameObject.tag.Equals("Player"))&& !isAttacking) {
 			rigidbody.MovePosition(rigidbody.position + movementVector*Time.deltaTime*movementSpeed);
 		}
 	}
