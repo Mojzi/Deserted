@@ -14,7 +14,7 @@ public class AttackScript : MonoBehaviour {
 		this.attacker = attacker;
 		attackAnimation= Instantiate(attackObject);
 			attackAnimation.GetComponent<DamageScript>().attacker = this.attacker;
-			attackAnimation.GetComponent<ReSkinAnimation>().spriteSheetName = attacker.GetComponent<PlayerMovement>().attack.attackAnimation;
+			attackAnimation.GetComponent<ReSkinAnimation>().spriteSheetName = attacker.GetComponent<MovementController>().attack.attackAnimation;
 		Vector2 attackDirection = new Vector2(0,0);
 		if(Mathf.Abs(directionVector.x) > Mathf.Abs(directionVector.y)) {
 			if(directionVector.x > 0) {
@@ -57,6 +57,6 @@ public class AttackScript : MonoBehaviour {
 	void RemoveAttackAnimation() {
 		if(attackAnimation != null)
 			Destroy(attackAnimation);
-			attacker.GetComponent<PlayerMovement>().isAttacking = false;
+			attacker.GetComponent<MovementController>().isAttacking = false;
 	}
 }

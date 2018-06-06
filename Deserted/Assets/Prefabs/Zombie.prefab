@@ -25,12 +25,12 @@ GameObject:
   - component: {fileID: 50099596578546876}
   - component: {fileID: 114790597457231782}
   - component: {fileID: 58663408302462882}
-  - component: {fileID: 114154605059553244}
   - component: {fileID: 114043908401969442}
   - component: {fileID: 114163567431154990}
   - component: {fileID: 114663533167966398}
+  - component: {fileID: 114401122968161714}
   m_Layer: 0
-  m_Name: Critter
+  m_Name: Zombie
   m_TagString: Critter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,17 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteSheetName: sprite_sheet_mouse
---- !u!114 &114154605059553244
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1061113345976608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7fe126c816d33458c897430a1dfbf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114163567431154990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,6 +141,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackObject: {fileID: 1840237768699854, guid: 80906663b47b9524e8fff0b7bf143611,
     type: 2}
+--- !u!114 &114401122968161714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061113345976608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6eaf5a826c2504daadd4b7a0ee1036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  sightRadius: 64
+  attackReach: 24
 --- !u!114 &114663533167966398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,15 +168,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directionVector: {x: 0, y: 0}
   movementVector: {x: 0, y: 0}
-  movementSpeed: 15
-  healthTotal: 25
-  currentHealth: 25
-  attack: {fileID: 11400000, guid: b911e0e1a19a6334d8fcf6f447eee87f, type: 2}
+  movementSpeed: 10
+  healthTotal: 100
+  currentHealth: 100
+  attack: {fileID: 11400000, guid: aa3e7b8ce7e7ac041b234456b686b623, type: 2}
   knocked: 0
   immune: 0
   isAttacking: 0
   armour: {fileID: 0}
-  weight: 1
+  weight: 2
 --- !u!114 &114790597457231782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,7 +223,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 1a6c862927af5494181e43577a31c807, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 885f76bba5a849a459b5fec480c8d3f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

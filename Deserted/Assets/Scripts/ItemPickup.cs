@@ -14,7 +14,7 @@ public class ItemPickup : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag.Equals("Player")) {
 			Debug.Log("Podniesiono ");
-			other.gameObject.GetComponent<PlayerMovement>().attack = attack;
+			other.gameObject.GetComponent<MovementController>().attack = attack;
 			Destroy(this.gameObject);
 		}
 	}
